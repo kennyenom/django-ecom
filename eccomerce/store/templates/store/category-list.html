@@ -1,0 +1,22 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4 mt-4 " style="margin-top: 2em;">
+	<!-- Featured Products -->
+	<h3 class="my-4 border-bottom pb-1" style="margin-top: 2em;">Categories</h3>
+	<div class="row">
+		{%for cat in data%}
+			<div class="col-md-3 mb-4">
+				<div class="card shadow">
+				<a href=><img style="width: 244px ;height: 300px;" src="{{cat.image.url}}" class="card-img-top" alt="{{cat.title}}" /></a>
+				<div class="card-body">
+					<h6 class="card-text text-uppercase fw-bold" style="font-weight: bold;color: black;"><a style="color: black;" href="{%url 'mobile'%}">{{cat.title}}</a></h6>
+				</div>
+				</div>
+			</div>
+            {%endfor%}
+			
+		
+	</div>
+</main>
+{% endblock %}

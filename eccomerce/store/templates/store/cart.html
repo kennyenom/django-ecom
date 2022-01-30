@@ -1,0 +1,62 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+	<div class="row" style="margin-top: 2em;">
+		<div class="col-lg-12">
+			<div class="box-element">
+
+				<a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a>
+
+				<br>
+				<br>
+				<table class="table">
+					<tr>
+						<th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
+						<th><h5>Total:<strong> ${{total_amount}}</strong></h5></th>
+						<th>
+							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+						</th>
+					</tr>
+				</table>
+
+			</div>
+
+			<br>
+			<div class="box-element">
+				<div class="cart-row">
+					<div style="flex:2"></div>
+					<div style="flex:2"><strong>Item</strong></div>
+					<div style="flex:1"><strong>Price</strong></div>
+					<div style="flex:1"><strong>Quantity</strong></div>
+					<div style="flex:1"><strong>Total</strong></div>
+					<div style="flex:1"><strong>status</strong></div>
+				</div>
+            {%for item in carts%}
+				<div class="cart-row">
+					<div style="flex:2"><img class="row-image" style="width: 100px ; height: 50px;" src="{{item.product.product_image.url}}"></div>
+					<div style="flex:2"><p>{{item.product.title}}</p></div>
+					<div style="flex:1"><p>${{item.product.price|floatformat:2}}</p></div>
+					<div style="flex:1">
+						<p class="quantity">{{item.quntity}}</p>
+						<div class="quantity">
+							<!-- <a class="minus-cart btn"><i class="fas fa-minus-square fa-lg"></i></a> -->
+							<span id="quantity" ></span>
+							<!-- <a id="plus-cart" class="pluscart btn"><i class="fas fa-plus-square fa-lg"></i></a> -->
+							</div>
+								<!-- <a class="plus-carta btn" id="plus-cart" pid="{{item.product.id}}"><i class="fas fa-minus-square fa-lg"></i></a>
+                                  <span id="quantity">{{cart.product.price}}</span>
+							  -->
+					
+							<!-- <img class="chg-quantity" pid="{{item.product.id}}" src="{% static  'images/arrow-down.png' %}">
+						</div> -->
+					</div>
+					<div style="flex:1"><p>$32</p></div>
+					<div class="">
+						<a href="{%url 'remove-cart' item.id%}" style="margin-right: 3.5em;" class="fa fa-trash fa-2x"></i></a>
+					</div>
+				</div>
+            {%endfor%}
+			</div>
+		</div>
+	</div>
+{% endblock content %}
